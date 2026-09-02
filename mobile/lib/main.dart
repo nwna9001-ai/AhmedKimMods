@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'features/home/home_page.dart';
+import 'features/profile/profile_page.dart';
 import 'theme/app_theme.dart';
-
 void main() {
   runApp(const AhmedKimModsApp());
 }
@@ -36,7 +36,7 @@ class _HomeShellState extends State<HomeShell> {
     ExplorePage(),
     FavoritesPage(),
     UploadPage(),
-    ProfilePage(),
+    ProfilePageReal(),
   ];
 
   @override
