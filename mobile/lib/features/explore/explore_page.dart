@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../mod_details/mod_details_page.dart';
 class ExplorePage extends StatelessWidget {
   const ExplorePage({super.key});
@@ -258,13 +259,10 @@ SizedBox(
   width: double.infinity,
   height: 55,
   child: ElevatedButton(
-    onPressed: () {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('جاري تحميل الإضافة 📥'),
-        ),
-      );
-    },
+    onPressed: () async {
+  const url = 'https://raw.githubusercontent.com/nwna9001-ai/AhmedKimMods/main/mobile/Night%20Vision%201.20.mcpack';
+  await launchUrl(Uri.parse(url));
+},
     child: const Text(
       'تحميل الإضافة',
       style: TextStyle(fontSize: 18),
