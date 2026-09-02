@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
-
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'features/home/home_page.dart';
 import 'features/profile/profile_page.dart';
 import 'features/explore/explore_page.dart';
 import 'theme/app_theme.dart';
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Supabase.initialize(
+    url: 'https://rmwirgguecibxtvgywj.supabase.co',
+    publishableKey: 'sb_publishable_IQExCaGxIJlRSsbc5_3Jsg_S2EdOn0w',
+  );
+
   runApp(const AhmedKimModsApp());
 }
-
 class AhmedKimModsApp extends StatelessWidget {
   const AhmedKimModsApp({super.key});
 
