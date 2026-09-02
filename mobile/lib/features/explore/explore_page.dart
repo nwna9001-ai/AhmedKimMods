@@ -263,9 +263,10 @@ SizedBox(
     const url = 'https://raw.githubusercontent.com/nwna9001-ai/AhmedKimMods/main/mobile/Night%20Vision%201.20.mcpack';
     final uri = Uri.parse(url);
 
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri, mode: LaunchMode.externalApplication);
-    }
+    await launchUrl(
+  uri,
+  mode: LaunchMode.externalApplication,
+);
   },
   child: const Text(
     'تحميل الإضافة',
