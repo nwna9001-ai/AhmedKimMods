@@ -6,10 +6,12 @@ class ApiService {
 
     return [
       ModModel(
+        id: '1',
         title: 'Example Mod',
         description: 'A Minecraft addon from KIM ADDONS',
         imageUrl: '',
         downloadUrl: '',
+        category: 'Minecraft Addons',
       ),
     ];
   }
