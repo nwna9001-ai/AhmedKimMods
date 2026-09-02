@@ -78,22 +78,24 @@ const ModDetailsPage({
             const SizedBox(height: 40),
 
             SizedBox(
-              width: double.infinity,
-              height: 55,
-              child: ElevatedButton(
-                onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('سيتم إضافة التحميل قريبًا 📦'),
-                    ),
-                  );
-                },
-                child: const Text(
-                  'تحميل المود',
-                  style: TextStyle(fontSize: 18),
-                ),
-              ),
-            ),
+  width: double.infinity,
+  height: 55,
+  child: ElevatedButton(
+    onPressed: () async {
+      final uri = Uri.parse(downloadUrl);
+
+      await launchUrl(
+        uri,
+        mode: LaunchMode.externalApplication,
+      );
+    },
+    child: const Text(
+      'تحميل المود',
+      style: TextStyle(fontSize: 18),
+    ), 
+  ),
+),
+            
 
             const SizedBox(height: 15),
 
