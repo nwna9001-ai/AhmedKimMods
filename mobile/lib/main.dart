@@ -86,19 +86,6 @@ class _HomeShellState extends State<HomeShell> {
   }
 }
 
-class ExplorePage extends StatelessWidget {
-  const ExplorePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text(
-        'اكتشف',
-        style: TextStyle(fontSize: 24),
-      ),
-    );
-  }
-}
 
 class FavoritesPage extends StatelessWidget {
   const FavoritesPage({super.key});
