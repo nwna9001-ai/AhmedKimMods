@@ -259,12 +259,12 @@ class ModDetailsPage extends StatelessWidget {
               height: 55,
               child: ElevatedButton(
                 onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('زر التحميل سنضيفه لاحقًا 🚀'),
-                    ),
-                  );
-                },
+  ScaffoldMessenger.of(context).showSnackBar(
+    const SnackBar(
+      content: Text('جاري تجهيز تحميل الإضافة 📥'),
+    ),
+  );
+},
                 child: const Text(
                   'تحميل الإضافة',
                   style: TextStyle(fontSize: 18),
