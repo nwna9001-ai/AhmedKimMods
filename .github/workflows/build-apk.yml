@@ -19,7 +19,9 @@ jobs:
       - name: Create Android project
         working-directory: mobile
         run: flutter create . --platforms android
-
+      - name: Add url_launcher
+        working-directory: mobile
+        run: flutter pub add url_launcher
       - name: Get dependencies
         working-directory: mobile
         run: flutter pub get
