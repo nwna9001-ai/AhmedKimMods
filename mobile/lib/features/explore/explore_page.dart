@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import '../mod_details/mod_details_page.dart';
 class ExplorePage extends StatelessWidget {
   const ExplorePage({super.key});
 
