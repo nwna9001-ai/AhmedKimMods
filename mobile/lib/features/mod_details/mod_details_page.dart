@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 
 class ModDetailsPage extends StatelessWidget {
   final String name;
-  final String description;
-  final IconData icon;
+final String description;
+final IconData icon;
+final String downloadUrl;
 
-  const ModDetailsPage({
-    super.key,
-    required this.name,
-    required this.description,
-    required this.icon,
-  });
+const ModDetailsPage({
+  super.key,
+  required this.name,
+  required this.description,
+  required this.icon,
+  this.downloadUrl = '',
+});
 
   @override
   Widget build(BuildContext context) {
