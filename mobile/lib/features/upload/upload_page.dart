@@ -12,7 +12,7 @@ class _UploadPageState extends State<UploadPage> {
   String? selectedFileName;
 
   Future<void> pickFile() async {
-    final result = await FilePicker.pickFiles(
+    final result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
       allowedExtensions: [
         'mcpack',
