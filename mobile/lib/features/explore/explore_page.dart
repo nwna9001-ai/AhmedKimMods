@@ -104,6 +104,7 @@ class _ExplorePageState extends State<ExplorePage> {
                               name: mod['name'] ?? 'بدون اسم',
                               description:
                                   mod['description'] ?? 'بدون وصف',
+                              icon: Icons.extension,
                               downloadUrl:
                                   mod['download_url'] ?? '',
                             ),
