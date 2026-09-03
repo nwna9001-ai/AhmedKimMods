@@ -31,6 +31,29 @@ jobs:
         working-directory: mobile
         run: flutter create . --platforms android
 
+      - name: Add Internet permission
+        working-directory: mobile
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path("android/app/src/main/AndroidManifest.xml")
+          text = path.read_text()
+
+          permission = '<uses-permission android:name="android.permission.INTERNET"/>'
+
+          if permission not in text:
+              text = text.replace(
+                  '<manifest ',
+                  '<manifest ',
+                  1
+              )
+              insert_pos = text.find('>') + 1
+              text = text[:insert_pos] + '\n    ' + permission + text[insert_pos:]
+
+          path.write_text(text)
+          PY
+
       - name: Set Android compile SDK 36
         working-directory: mobile
         run: |
