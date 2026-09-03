@@ -52,8 +52,20 @@ class _UploadPageState extends State<UploadPage> {
           children: [
             const SizedBox(height: 30),
 
-            GestureDetector(
-              onTap: pickFile,
+                        GestureDetector(
+              onTap: () async {
+                try {
+                  await pickFile();
+                } catch (e) {
+                  if (!context.mounted) return;
+
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('حدث خطأ: $e'),
+                    ),
+                  );
+                }
+              },
               child: Container(
                 width: double.infinity,
                 height: 180,
@@ -84,13 +96,16 @@ class _UploadPageState extends State<UploadPage> {
                     ),
                     const SizedBox(height: 8),
                     const Text(
-                      '.mcpack أو .mcaddon أو .mcworld',
+                      '.mcpack أو .mcaddon أو .mcworld أو .zip',
                       style: TextStyle(
                         color: Colors.grey,
                         fontSize: 14,
                       ),
                     ),
                   ],
+                ),
+              ),
+            ),
                 ),
               ),
             ),
