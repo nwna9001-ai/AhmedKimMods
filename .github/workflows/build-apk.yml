@@ -19,13 +19,16 @@ jobs:
       - name: Create Android project
         working-directory: mobile
         run: flutter create . --platforms android
-      
-
-      - name: Check compile SDK
+      - name: Set Android compile SDK
         working-directory: mobile
         run: |
-          echo "Checking Android compile SDK..."
-          grep -n "compileSdk" android/app/build.gradle* || true
+          if [ -f android/app/build.gradle.kts ]; then
+            sed -i 's/compileSdk = flutter.compileSdkVersion/compileSdk = 36/' android/app/build.gradle.kts
+          elif [ -f android/app/build.gradle ]; then
+            sed -i 's/compileSdk flutter.compileSdkVersion/compileSdk 36/' android/app/build.gradle
+          fi      
+
+      
 
       - name: Add url_launcher
         working-directory: mobile
