@@ -1,7 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:file_picker/file_picker.dart';
 
-class UploadPage extends StatelessWidget {
+class UploadPage extends StatefulWidget {
   const UploadPage({super.key});
+
+  @override
+  State<UploadPage> createState() => _UploadPageState();
+}
+
+class _UploadPageState extends State<UploadPage> {
+  String? selectedFileName;
+
+  Future<void> pickFile() async {
+    final result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: [
+        'mcpack',
+        'mcaddon',
+        'mcworld',
+        'zip',
+      ],
+    );
+
+    if (result != null) {
+      setState(() {
+        selectedFileName = result.files.single.name;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,42 +52,46 @@ class UploadPage extends StatelessWidget {
           children: [
             const SizedBox(height: 30),
 
-            Container(
-              width: double.infinity,
-              height: 180,
-              decoration: BoxDecoration(
-                color: const Color(0xFF181818),
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(
-                  color: Colors.grey,
+            GestureDetector(
+              onTap: pickFile,
+              child: Container(
+                width: double.infinity,
+                height: 180,
+                decoration: BoxDecoration(
+                  color: const Color(0xFF181818),
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(
+                    color: Colors.grey,
+                  ),
                 ),
-              ),
-              child: const Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.upload_file,
-                    color: Colors.white,
-                    size: 55,
-                  ),
-                  SizedBox(height: 15),
-                  Text(
-                    'اختر ملف الإضافة',
-                    style: TextStyle(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(
+                      Icons.upload_file,
                       color: Colors.white,
-                      fontSize: 19,
-                      fontWeight: FontWeight.bold,
+                      size: 55,
                     ),
-                  ),
-                  SizedBox(height: 8),
-                  Text(
-                    '.mcpack أو .mcaddon أو .mcworld',
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 14,
+                    const SizedBox(height: 15),
+                    Text(
+                      selectedFileName ?? 'اختر ملف الإضافة',
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 19,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                ],
+                    const SizedBox(height: 8),
+                    const Text(
+                      '.mcpack أو .mcaddon أو .mcworld',
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
 
