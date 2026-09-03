@@ -49,65 +49,65 @@ class _UploadPageState extends State<UploadPage> {
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
+  children: [
+    const SizedBox(height: 30),
+
+    GestureDetector(
+      onTap: () async {
+        try {
+          await pickFile();
+        } catch (e) {
+          if (!context.mounted) return;
+
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('حدث خطأ: $e'),
+            ),
+          );
+        }
+      },
+      child: Container(
+        width: double.infinity,
+        height: 180,
+        decoration: BoxDecoration(
+          color: const Color(0xFF181818),
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(
+            color: Colors.grey,
+          ),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SizedBox(height: 30),
-
-                                    GestureDetector(
-              onTap: () async {
-                try {
-                  await pickFile();
-                } catch (e) {
-                  if (!context.mounted) return;
-
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text('حدث خطأ: $e'),
-                    ),
-                  );
-                }
-              },
-              child: Container(
-                width: double.infinity,
-                height: 180,
-                decoration: BoxDecoration(
-                  color: const Color(0xFF181818),
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(
-                    color: Colors.grey,
-                  ),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(
-                      Icons.upload_file,
-                      color: Colors.white,
-                      size: 55,
-                    ),
-                    const SizedBox(height: 15),
-                    Text(
-                      selectedFileName ?? 'اختر ملف الإضافة',
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 19,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    const Text(
-                      '.mcpack أو .mcaddon أو .mcworld أو .zip',
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 14,
-                      ),
-                    ),
-                  ],
-                ),
+            const Icon(
+              Icons.upload_file,
+              color: Colors.white,
+              size: 55,
+            ),
+            const SizedBox(height: 15),
+            Text(
+              selectedFileName ?? 'اختر ملف الإضافة',
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 19,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 8),
+            const Text(
+              '.mcpack أو .mcaddon أو .mcworld أو .zip',
+              style: TextStyle(
+                color: Colors.grey,
+                fontSize: 14,
               ),
             ),
           ],
-            const SizedBox(height: 25),
+        ),
+      ),
+    ),
+
+    const SizedBox(height: 25),
 
             TextField(
               style: const TextStyle(color: Colors.white),
