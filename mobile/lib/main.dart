@@ -3,6 +3,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'features/home/home_page.dart';
 import 'features/profile/profile_page.dart';
 import 'features/explore/explore_page.dart';
+import 'features/upload/upload_page.dart';
 import 'theme/app_theme.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
