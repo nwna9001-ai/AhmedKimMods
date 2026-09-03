@@ -54,7 +54,7 @@ jobs:
 
       - name: Add file_picker
         working-directory: mobile
-        run: flutter pub add "file_picker:^8.3.7"
+        run: flutter pub add "file_picker:^10.3.8"
 
       - name: Get dependencies
         working-directory: mobile
