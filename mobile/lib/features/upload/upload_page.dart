@@ -52,7 +52,7 @@ class _UploadPageState extends State<UploadPage> {
           children: [
             const SizedBox(height: 30),
 
-                        GestureDetector(
+                                    GestureDetector(
               onTap: () async {
                 try {
                   await pickFile();
@@ -106,10 +106,7 @@ class _UploadPageState extends State<UploadPage> {
                 ),
               ),
             ),
-                ),
-              ),
-            ),
-
+          ],
             const SizedBox(height: 25),
 
             TextField(
