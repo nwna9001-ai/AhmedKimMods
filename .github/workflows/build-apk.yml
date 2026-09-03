@@ -19,10 +19,7 @@ jobs:
       - name: Create Android project
         working-directory: mobile
         run: flutter create . --platforms android
-      - name: Set Android compile SDK
-        working-directory: mobile
-        run: sed -i 's/compileSdk = .*/compileSdk = 36/' android/app/build.gradle
-           
+      
 
       - name: Check compile SDK
         working-directory: mobile
