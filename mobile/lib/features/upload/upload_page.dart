@@ -12,7 +12,7 @@ class _UploadPageState extends State<UploadPage> {
   String? selectedFileName;
 
   Future<void> pickFile() async {
-    final result = await FilePicker.platform.pickFiles(
+    final result = await FilePicker.pickFiles(
       type: FileType.custom,
       allowedExtensions: [
         'mcpack',
@@ -52,61 +52,61 @@ class _UploadPageState extends State<UploadPage> {
   children: [
     const SizedBox(height: 30),
 
-    GestureDetector(
-      onTap: () async {
-        try {
-          await pickFile();
-        } catch (e) {
-          if (!context.mounted) return;
+    ElevatedButton(
+  onPressed: () async {
+    try {
+      await pickFile();
+    } catch (e) {
+      if (!context.mounted) return;
 
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text('حدث خطأ: $e'),
-            ),
-          );
-        }
-      },
-      child: Container(
-        width: double.infinity,
-        height: 180,
-        decoration: BoxDecoration(
-          color: const Color(0xFF181818),
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(
-            color: Colors.grey,
-          ),
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('حدث خطأ: $e'),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(
-              Icons.upload_file,
-              color: Colors.white,
-              size: 55,
-            ),
-            const SizedBox(height: 15),
-            Text(
-              selectedFileName ?? 'اختر ملف الإضافة',
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 19,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 8),
-            const Text(
-              '.mcpack أو .mcaddon أو .mcworld أو .zip',
-              style: TextStyle(
-                color: Colors.grey,
-                fontSize: 14,
-              ),
-            ),
-          ],
-        ),
+      );
+    }
+  },
+  style: ElevatedButton.styleFrom(
+    backgroundColor: const Color(0xFF181818),
+    foregroundColor: Colors.white,
+    minimumSize: const Size(double.infinity, 180),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(20),
+      side: const BorderSide(
+        color: Colors.grey,
       ),
     ),
-
+    padding: EdgeInsets.zero,
+  ),
+  child: Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      const Icon(
+        Icons.upload_file,
+        color: Colors.white,
+        size: 55,
+      ),
+      const SizedBox(height: 15),
+      Text(
+        selectedFileName ?? 'اختر ملف الإضافة',
+        textAlign: TextAlign.center,
+        style: const TextStyle(
+          color: Colors.white,
+          fontSize: 19,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      const SizedBox(height: 8),
+      const Text(
+        '.mcpack أو .mcaddon أو .mcworld أو .zip',
+        style: TextStyle(
+          color: Colors.grey,
+          fontSize: 14,
+        ),
+      ),
+    ],
+  ),
+),
     const SizedBox(height: 25),
 
             TextField(
