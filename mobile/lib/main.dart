@@ -108,19 +108,7 @@ class FavoritesPage extends StatelessWidget {
   }
 }
 
-class UploadPage extends StatelessWidget {
-  const UploadPage({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text(
-        'رفع إضافة',
-        style: TextStyle(fontSize: 24),
-      ),
-    );
-  }
-}
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
