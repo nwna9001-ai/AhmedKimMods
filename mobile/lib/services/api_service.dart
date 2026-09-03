@@ -1,18 +1,21 @@
+import 'package:supabase_flutter/supabase_flutter.dart';
 import '../models/mod_model.dart';
 
 class ApiService {
   static Future<List<ModModel>> getMods() async {
-    await Future.delayed(const Duration(milliseconds: 500));
+    final data = await Supabase.instance.client
+        .from('mods')
+        .select();
 
-    return [
-      ModModel(
-        id: '1',
-        title: 'Example Mod',
-        description: 'A Minecraft addon from KIM ADDONS',
-        imageUrl: '',
-        downloadUrl: '',
-        category: 'Minecraft Addons',
-      ),
-    ];
+    return data.map<ModModel>((item) {
+      return ModModel(
+        id: item['id'].toString(),
+        title: item['name'] ?? '',
+        description: item['description'] ?? '',
+        imageUrl: item['image_url'] ?? '',
+        downloadUrl: item['download_url'] ?? '',
+        category: item['category'] ?? 'Minecraft Addons',
+      );
+    }).toList();
   }
 }
