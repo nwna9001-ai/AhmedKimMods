@@ -19,16 +19,27 @@ jobs:
       - name: Create Android project
         working-directory: mobile
         run: flutter create . --platforms android
-      - name: Set Android compile SDK
+
+      - name: Install Android SDK 36
+        run: |
+          yes | sdkmanager "platforms;android-36" "build-tools;35.0.0" || true
+          sdkmanager --list_installed
+
+      - name: Set Android compile SDK 36
         working-directory: mobile
         run: |
           if [ -f android/app/build.gradle.kts ]; then
-            sed -i 's/compileSdk = flutter.compileSdkVersion/compileSdk = 36/' android/app/build.gradle.kts
-          elif [ -f android/app/build.gradle ]; then
-            sed -i 's/compileSdk flutter.compileSdkVersion/compileSdk 36/' android/app/build.gradle
-          fi      
+            sed -i 's/compileSdk = flutter.compileSdkVersion/compileSdk = 36/g' android/app/build.gradle.kts
+            sed -i 's/compileSdk = [0-9]*/compileSdk = 36/g' android/app/build.gradle.kts
+          fi
 
-      
+          if [ -f android/app/build.gradle ]; then
+            sed -i 's/compileSdk flutter.compileSdkVersion/compileSdk 36/g' android/app/build.gradle
+            sed -i 's/compileSdk [0-9]*/compileSdk 36/g' android/app/build.gradle
+          fi
+
+          echo "Checking compileSdk:"
+          grep -R "compileSdk" android/app/ || true
 
       - name: Add url_launcher
         working-directory: mobile
